@@ -1,7 +1,6 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
+const { Sequelize } = require('sequelize');
 
 const DATABASE_URL = process.env.DATABASE_URL || "postgres://localhost/postgres";
-console.log(DATABASE_URL);
 
 class Database {
     constructor () {

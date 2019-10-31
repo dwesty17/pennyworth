@@ -1,6 +1,7 @@
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
 const DATABASE_URL = "postgres://localhost/postgres" || process.env.DATABASE_URL;
+console.log(DATABASE_URL);
 
 class Database {
     constructor () {
@@ -14,7 +15,7 @@ class Database {
             await this.sequelize.authenticate();
             console.log("🔗 Connected to the Database!");
         } catch (error) {
-            console.error("☠️ Unable to connect to the Database");
+            console.error("💀 Unable to connect to the Database");
             process.exit(1);
         }
     }

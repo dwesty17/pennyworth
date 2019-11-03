@@ -14,10 +14,10 @@ const typeDefs = gql`
     type Transaction {
         id: ID!
         type: TransactionType!
-        timestamp: Int!
+        transactionTime: Int!
         category: TransactionCategory
         tags: [ String! ]
-        transactee: String!
+        transactee: String! # TODO should have types for different vendors
         transacteeType: TransacteeType
         description: String!
         amount: Float!

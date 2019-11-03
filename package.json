@@ -6,7 +6,8 @@
   "keywords": [],
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "start:dev": "nodemon src/index.js"
   },
   "dependencies": {
     "apollo-server": "2.9.7",

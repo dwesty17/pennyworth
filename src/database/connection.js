@@ -1,6 +1,6 @@
-const { Sequelize } = require('sequelize');
+const { Sequelize } = require("sequelize");
 
-const { transactionOptions, transactionAttributes } = require('./transaction');
+const { transactionOptions, transactionAttributes } = require("./models/transaction");
 const { Transaction } = require("./models");
 
 const DATABASE_URL = process.env.DATABASE_URL || "postgres://localhost/postgres";

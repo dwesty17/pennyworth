@@ -1,4 +1,4 @@
-const Database = require("./database/database");
+const Database = require("./database/connection");
 const GraphqlServer = require("./graphql/server");
 
 const main = async () => {

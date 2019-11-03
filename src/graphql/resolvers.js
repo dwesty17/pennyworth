@@ -1,11 +1,21 @@
+const { Transaction } = require("../database/models");
+
 const resolvers = {
     Query: {
-        getTransactions() {},
+        async getTransactions() {
+            return Transaction.findAll();
+        },
     },
     Mutation: {
-        createTransaction(_, { transactionInput }) {},
-        updateTransaction(_, { id, transactionInput }) {},
-        deleteTransaction(_, { id }) {},
+        async createTransaction(_, { transactionInput }) {
+            return Transaction.create(transactionInput);
+        },
+        async updateTransaction(_, { id, transactionInput }) {
+            return Transaction.update(transactionInput, { where: { id } });
+        },
+        async deleteTransaction(_, { id }) {
+            return Transaction.destroy({ where: { id } });
+        },
     },
 };
 

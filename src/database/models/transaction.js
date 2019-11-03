@@ -1,5 +1,7 @@
 const { Sequelize } = require("sequelize");
 
+class Transaction extends Sequelize.Model {}
+
 const transactionAttributes = {
     id : {
         type: Sequelize.INTEGER,
@@ -7,10 +9,7 @@ const transactionAttributes = {
         autoIncrement: true,
     },
     type: {
-        type: Sequelize.ENUM(
-            "CREDIT",
-            "DEBIT",
-        ),
+        type: Sequelize.ENUM("CREDIT", "DEBIT"),
         allowNull: false
     },
     transactionTime: {
@@ -18,11 +17,7 @@ const transactionAttributes = {
         allowNull: false,
     },
     category: {
-        type: Sequelize.ENUM(
-            "PAYCHECK",
-            "RENT",
-            "TRANSPORTATION",
-        ),
+        type: Sequelize.ENUM("PAYCHECK", "RENT", "TRANSPORTATION"),
         allowNull: false,
     },
     tags: {
@@ -35,11 +30,7 @@ const transactionAttributes = {
         allowNull: false,
     },
     transacteeType: {
-        type: Sequelize.ENUM(
-            "VENDOR",
-            "PERSON",
-            "EMPLOYER",
-        ),
+        type: Sequelize.ENUM("VENDOR", "PERSON", "EMPLOYER"),
     },
     description: {
         type: Sequelize.STRING,
@@ -56,6 +47,7 @@ const transactionOptions = {
 };
 
 module.exports = {
+    Transaction,
     transactionAttributes,
     transactionOptions,
 };

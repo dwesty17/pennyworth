@@ -5,7 +5,11 @@ const JWT_KEY = process.env.JWT_KEY || "secret";
 
 class User extends Sequelize.Model {
     generateAuthToken () {
-        return jwt.sign({ id: this.id, isAdmin: this.isAdmin }, JWT_KEY);
+        return jwt.sign({
+            id: this.id,
+            email: this.email,
+            isAdmin: this.isAdmin,
+        }, JWT_KEY);
     }
 }
 
@@ -25,17 +29,17 @@ const userAttributes = {
     password: {
         type: Sequelize.STRING,
         allowNull: false,
-        // TODO should we validate that value looks like an expected hash?
-        validate: {
-            min: 30, // TODO figure out hash length
-            max: 30, // TODO figure out hash length
-            // TODO isAlphanumeric?
-        },
+        validate: { min: 60, max: 60 },
+    },
+    isSuspended: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
     },
     isAdmin: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
-        default: false,
+        defaultValue: false,
     },
 };
 

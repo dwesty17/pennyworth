@@ -1,7 +1,9 @@
 const { Sequelize } = require("sequelize");
 
 const { transactionOptions, transactionAttributes } = require("./models/transaction");
+const { userOptions, userAttributes } = require("./models/user");
 const { Transaction } = require("./models");
+const { User } = require("./models");
 
 const DATABASE_URL = process.env.DATABASE_URL || "postgres://localhost/postgres";
 
@@ -23,11 +25,14 @@ class Database {
 
         try {
             transactionOptions.sequelize = this.sequelize;
+            userOptions.sequelize = this.sequelize;
 
             Transaction.init(transactionAttributes, transactionOptions);
+            User.init(userAttributes, userOptions);
 
             // TODO remove sync() when migration framework is added
             await Transaction.sync();
+            await User.sync();
 
             console.log("🔮 Initialized data models!");
         } catch (error) {

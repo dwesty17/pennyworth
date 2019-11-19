@@ -2,15 +2,31 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
     type Query {
+        getUser(user: UserInput): User
+        
         getTransactions: [ Transaction! ]
     }
-    
+
     type Mutation {
+        createUser(user: UserInput): User
+        
         createTransaction(transaction: TransactionInput): Transaction!
         updateTransaction(id: ID, transaction: TransactionInput): Transaction!
         deleteTransaction(id: ID): Transaction
     }
-    
+
+    type User {
+        id: ID!
+        email: String!
+        token: String!
+        isAdmin: Boolean!
+    }
+
+    input UserInput {
+        email: String!
+        password: String!
+    }
+
     type Transaction {
         id: ID!
         type: TransactionType!
@@ -30,13 +46,13 @@ const typeDefs = gql`
         amount: Float!
         timestamp: Int!
     }
-    
+
     enum TransactionCategory {
         PAYCHECK
         RENT
         TRANSPORTATION
     }
-    
+
     enum TransactionType {
         CREDIT
         DEBIT

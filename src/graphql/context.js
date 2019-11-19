@@ -1,5 +1,5 @@
 const { User } = require("../database/models");
 
-const context = async () => {};
+const context = async ({ req }) => {};
 
 module.exports = context;

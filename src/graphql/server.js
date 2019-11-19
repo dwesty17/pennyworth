@@ -2,10 +2,15 @@ const { ApolloServer } = require('apollo-server');
 
 const typeDefs = require("./type-defs");
 const resolvers = require("./resolvers");
+const context = require("./context");
 
 class GraphqlServer {
     constructor () {
-        this.server = new ApolloServer({ typeDefs, resolvers });
+        this.server = new ApolloServer({
+            typeDefs,
+            resolvers,
+            context,
+        });
     }
 
     async start () {

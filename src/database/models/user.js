@@ -45,6 +45,7 @@ const userAttributes = {
 
 const userOptions = {
     modelName: 'user',
+    underscored: true,
 };
 
 module.exports = {

@@ -44,6 +44,7 @@ const transactionAttributes = {
 
 const transactionOptions = {
     modelName: 'transaction',
+    underscored: true,
 };
 
 module.exports = {

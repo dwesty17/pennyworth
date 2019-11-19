@@ -14,16 +14,16 @@ const resolvers = {
     Query: {
         getUser: async (_, { user }) => {
             try {
-                const matchingUser = await User.findOne({ where: { user: user.email } });
+                const matchingUser = await User.findOne({ where: { email: user.email } });
                 if (!matchingUser || matchingUser.isSuspended) {
                     return;
                 }
 
-                const passwordMatch = bcrypt.compare(user.password, matchingUser.password);
+                const passwordMatch = await bcrypt.compare(user.password, matchingUser.password);
 
                 if (passwordMatch) {
                     const token = matchingUser.generateAuthToken();
-                    return { token, ...matchingUser };
+                    return { token, ...matchingUser.dataValues };
                 }
             } catch (error) {
                 console.error(error);
@@ -38,7 +38,6 @@ const resolvers = {
             try {
                 const existingUser = await User.findOne({ where: { email: user.email }});
                 if (existingUser) {
-                    console.error("👯 User already exists");
                     return;
                 }
 
@@ -46,7 +45,7 @@ const resolvers = {
                 const newUser = await User.create(user);
                 const token = newUser.generateAuthToken();
 
-                return { token, ...newUser };
+                return { token, ...newUser.dataValues };
             } catch (error) {
                 console.error(error);
             }

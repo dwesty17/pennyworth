@@ -1,5 +1,5 @@
-const { User } = require("../database/models");
-
-const context = async ({ req }) => {};
+const context = async () => {
+    // TODO
+};
 
 module.exports = context;

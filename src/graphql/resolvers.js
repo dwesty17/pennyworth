@@ -41,8 +41,8 @@ const resolvers = {
 					return;
 				}
 
-				user.password = await bcrypt.hash(user.password, 10);
-				const newUser = await User.create(user);
+				const passwordHash = await bcrypt.hash(user.password, 10);
+				const newUser = await User.create({ ...user, password: passwordHash });
 				const token = newUser.generateAuthToken();
 
 				return { token, ...newUser.dataValues };

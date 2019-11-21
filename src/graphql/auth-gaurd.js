@@ -1,5 +1,7 @@
+const { NODE_ENV } = require("../config");
+
 const authenticated = (resolver) => (root, args, context, info) => {
-    if (process.env.NODE_ENV === "production" && !context.currentUser) {
+    if (NODE_ENV === "production" && !context.currentUser) {
         throw new Error("Unauthenticated!");
     }
 

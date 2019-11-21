@@ -1,11 +1,10 @@
 const { Sequelize } = require("sequelize");
 
+const { DATABASE_URL } = require("../config");
 const { transactionOptions, transactionAttributes } = require("./models/transaction");
 const { userOptions, userAttributes } = require("./models/user");
 const { Transaction } = require("./models");
 const { User } = require("./models");
-
-const DATABASE_URL = process.env.DATABASE_URL || "postgres://localhost/postgres";
 
 class Database {
 	constructor () {

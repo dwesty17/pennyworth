@@ -1,7 +1,7 @@
 const { Sequelize } = require("sequelize");
 const jwt = require("jsonwebtoken");
 
-const JWT_KEY = process.env.JWT_KEY || "secret";
+const { JWT_KEY } = require("../../config");
 
 class User extends Sequelize.Model {
 	generateAuthToken () {

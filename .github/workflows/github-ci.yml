@@ -5,6 +5,7 @@ on: [push]
 jobs:
   build:
 
+    name: build & lint
     runs-on: ubuntu-latest
     timeout-minutes: 1
 

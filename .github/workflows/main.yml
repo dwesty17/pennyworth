@@ -8,3 +8,9 @@ jobs:
     steps:
     - name: Install dependency
       run: npm install
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run eslint
+      run: npm run lint

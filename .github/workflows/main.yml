@@ -4,6 +4,7 @@ on: push
 
 jobs:
   lint:
+    name: lint
     runs-on: ubuntu-latest
     steps:
       run: |

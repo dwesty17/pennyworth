@@ -1,4 +1,4 @@
-name: Node CI
+name: CI
 
 on: [push]
 
@@ -18,24 +18,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install
+    - name: install, lint
       run: |
         npm ci
-      env:
-        CI: true
-
-  lint:
-  
-    runs-on: ubuntu-latest
-    needs: [build]
-    timeout-minutes: 1
-
-    strategy:
-      matrix:
-        node-version: [8.x, 10.x, 12.x]
-        
-    steps:
-    - name: npm run lint
-      run: npm run lint
+        npm run lint
       env:
         CI: true

@@ -10,7 +10,7 @@ const transactionAttributes = {
 	},
 	type: {
 		type: Sequelize.ENUM("CREDIT", "DEBIT"),
-		allowNull: false
+		allowNull: false,
 	},
 	transactionTime: {
 		type: Sequelize.STRING,

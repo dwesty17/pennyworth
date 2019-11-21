@@ -7,13 +7,14 @@ module.exports = {
 	},
 	extends: "eslint:recommended",
 	globals: {
-		"Atomics": "readonly",
-		"SharedArrayBuffer": "readonly"
+		Atomics: "readonly",
+		SharedArrayBuffer: "readonly",
 	},
 	parserOptions: {
-		"ecmaVersion": 2018
+		ecmaVersion: 2018,
 	},
 	rules: {
+		"comma-dangle": [ "error", "always-multiline" ],
 		"linebreak-style": [ "error", "unix" ],
 		"quotes": [ "error", "double" ],
 		"semi": [ "error", "always" ],

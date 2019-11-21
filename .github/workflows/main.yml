@@ -3,14 +3,10 @@ name: CI
 on: push
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Install dependency
-      run: npm install
-
   lint:
     runs-on: ubuntu-latest
     steps:
+    - name: Install depedencies
+      run: npm install
     - name: Run eslint
       run: npm run lint

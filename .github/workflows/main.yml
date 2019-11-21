@@ -6,7 +6,6 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - name: Install depedencies
-      run: npm install
-    - name: Run eslint
-      run: npm run lint
+      run: |
+        npm install
+        npm run lint

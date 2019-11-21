@@ -3,10 +3,20 @@ name: CI
 on: push
 
 jobs:
-  lint:
-    name: lint
+
+  install:
+    name: Install
     runs-on: ubuntu-latest
+    timeout-minutes: 1
     steps:
-      run: |
-        npm install
-        npm run lint
+      - name: Install dependencies
+      run: npm install
+
+  lint:
+    name: Lint
+    needs: [install]
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Run lint
+      run: npm run lint

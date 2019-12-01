@@ -1,5 +1,5 @@
 const { authenticated } = require("../auth-gaurd");
-const { getUser, createUser } = require("./users");
+const { loginUser, createUser } = require("./users");
 const {
     getTransactions,
     createTransaction,
@@ -9,7 +9,7 @@ const {
 
 const resolvers = {
     Query: {
-        getUser,
+        loginUser,
         getTransactions: authenticated(getTransactions),
     },
     Mutation: {

@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 
 const { User } = require("../../database/models");
 
-const getUser = async (_, { user }) => {
+const loginUser = async (_, { user }) => {
 	try {
 		const matchingUser = await User.findOne({ where: { email: user.email } });
 		if (!matchingUser || matchingUser.isSuspended) {
@@ -38,6 +38,6 @@ const createUser = async (_, { user }) => {
 };
 
 module.exports = {
-	getUser,
+	loginUser,
 	createUser,
 };

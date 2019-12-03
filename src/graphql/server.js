@@ -19,7 +19,7 @@ class GraphqlServer {
 			await this.server.listen(PORT);
 			console.log(`🌎 Server started on port ${PORT}`);
 		} catch (error) {
-			console.error("❌ Unable to start thee server", error);
+			console.error("❌ Unable to start the server", error);
 			process.exit(1);
 		}
 	}

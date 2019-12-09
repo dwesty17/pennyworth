@@ -5,7 +5,7 @@ const { User } = require("../database/models");
 
 const context = async ({ req }) => {
     try {
-        const token = req.headers.authorization;
+        const token = req.headers.authorization.replace("Bearer ", "").trim();
 
         if (token) {
             const user = await tradeTokenForUser(token);

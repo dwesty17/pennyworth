@@ -33,9 +33,10 @@ const createUser = async (_, { user }) => {
 
 		const passwordHash = await bcrypt.hash(user.password, 10);
 		const newUser = await User.create({ ...user, password: passwordHash });
-		const token = newUser.generateAuthToken();
 
-		return { token, ...newUser.dataValues };
+		// TODO generate and return a token when users can auto join
+
+		return { ...newUser.dataValues };
 	} catch (error) {
 		console.error(error);
 	}

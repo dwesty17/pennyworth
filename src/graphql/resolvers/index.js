@@ -13,12 +13,12 @@ const {
 
 const resolvers = {
     Query: {
-        loginUser,
         getUser,
         getTransactions: authenticated(getTransactions),
     },
     Mutation: {
         createUser,
+        loginUser,
         createTransaction: authenticated(createTransaction),
         updateTransaction: authenticated(updateTransaction),
         deleteTransaction: authenticated(deleteTransaction),

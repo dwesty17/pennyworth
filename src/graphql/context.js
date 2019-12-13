@@ -9,9 +9,7 @@ const context = async ({ req }) => {
 
         if (token) {
             const user = await tradeTokenForUser(token);
-            return {
-                user: { ...user, token },
-            };
+            return user ? { user: { ...user, token } } : {};
         } else {
             return {};
         }
@@ -29,7 +27,7 @@ const tradeTokenForUser = async (token) => {
             return matchingUserRecord.dataValues;
         }
     } catch (error) {
-        console.warn("Unable to decode token");
+        console.warn("🔎 Unable to decode token");
     }
 };
 

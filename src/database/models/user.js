@@ -41,6 +41,9 @@ const userAttributes = {
 		allowNull: false,
 		defaultValue: false,
 	},
+	monthlySpendingGoal: {
+		type: Sequelize.FLOAT,
+	},
 };
 
 const userOptions = {

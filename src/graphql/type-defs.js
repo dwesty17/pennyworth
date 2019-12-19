@@ -8,12 +8,13 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        createUser(user: UserInput): User
-        loginUser(user: UserInput): User
+        loginUser (user: UserInput!): User
+        createUser (user: UserInput!): User
+        updateUser (updatedUser: UserInput!): User
         
-        createTransaction(transaction: TransactionInput): Transaction!
-        updateTransaction(id: ID, transaction: TransactionInput): Transaction!
-        deleteTransaction(id: ID): Transaction
+        createTransaction (transaction: TransactionInput!): Transaction!
+        updateTransaction (id: ID!, transaction: TransactionInput!): Transaction!
+        deleteTransaction (id: ID!): Transaction
     }
 
     type User {
@@ -21,11 +22,13 @@ const typeDefs = gql`
         email: String!
         token: String!
         isAdmin: Boolean!
+        monthlySpendingGoal: Float!
     }
-
+    
     input UserInput {
-        email: String!
-        password: String!
+        email: String
+        password: String
+        monthlySpendingGoal: Float
     }
 
     type Transaction {

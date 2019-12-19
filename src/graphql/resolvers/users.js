@@ -2,8 +2,17 @@ const bcrypt = require("bcrypt");
 
 const { User } = require("../../database/models");
 
+const getUser = async (_, __, { user }) => {
+	return user;
+};
+
 const loginUser = async (_, { user }) => {
 	try {
+		// TODO should I just have a separate input type for login attempts?
+		if (!user.email || !user.password) {
+			return;
+		}
+
 		const matchingUser = await User.findOne({ where: { email: user.email } });
 		if (!matchingUser || matchingUser.isSuspended) {
 			return;
@@ -18,10 +27,6 @@ const loginUser = async (_, { user }) => {
 	} catch (error) {
 		console.error(error);
 	}
-};
-
-const getUser = async (_, __, { user }) => {
-	return user;
 };
 
 const createUser = async (_, { user }) => {
@@ -42,8 +47,20 @@ const createUser = async (_, { user }) => {
 	}
 };
 
+const updateUser = async (_, { updatedUser }, { user }) => {
+	try {
+		delete updatedUser.email;
+		delete updatedUser.password;
+		await User.update(updatedUser, { where: { id: user.id } });
+		return User.findOne({ where: { id: user.id } });
+	} catch (error) {
+		console.error(error);
+	}
+};
+
 module.exports = {
-	loginUser,
 	getUser,
+	loginUser,
 	createUser,
+	updateUser,
 };

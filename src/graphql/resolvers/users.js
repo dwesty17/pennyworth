@@ -51,6 +51,9 @@ const updateUser = async (_, { updatedUser }, { user }) => {
 	try {
 		delete updatedUser.email;
 		delete updatedUser.password;
+		if (updatedUser.monthlySpendingGoal && updatedUser.monthlySpendingGoal <= 0) {
+			return;
+		}
 		await User.update(updatedUser, { where: { id: user.id } });
 		return User.findOne({ where: { id: user.id } });
 	} catch (error) {

@@ -1,9 +1,7 @@
-const { NODE_ENV } = require("../config");
-
 const authenticated = (resolver) => (root, args, context, info) => {
     const user = context.user || {};
 
-    if (NODE_ENV === "production" && !user.id) {
+    if (!user.id) {
         throw new Error("Unauthenticated!");
     }
 
@@ -14,4 +12,4 @@ const authenticated = (resolver) => (root, args, context, info) => {
     return resolver(root, args, context, info);
 };
 
-module.exports = { authenticated };
+module.exports = {authenticated};

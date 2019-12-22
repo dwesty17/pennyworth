@@ -22,7 +22,7 @@ const typeDefs = gql`
         email: String!
         token: String!
         isAdmin: Boolean!
-        monthlySpendingGoal: Float!
+        monthlySpendingGoal: Float
     }
     
     input UserInput {

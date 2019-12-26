@@ -20,7 +20,7 @@ const typeDefs = gql`
     type User {
         id: ID!
         email: String!
-        token: String!
+        token: String
         isAdmin: Boolean!
         monthlySpendingGoal: Float
     }

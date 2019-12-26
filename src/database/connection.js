@@ -1,4 +1,5 @@
 const { Sequelize } = require("sequelize");
+const Umzug = require("umzug");
 
 const { DATABASE_URL } = require("../config");
 const { transactionOptions, transactionAttributes } = require("./models/transaction");
@@ -29,15 +30,32 @@ class Database {
 			Transaction.init(transactionAttributes, transactionOptions);
 			User.init(userAttributes, userOptions);
 
-			// TODO remove sync() when migration framework is added
-			await Transaction.sync();
-			await User.sync();
+			await this.runMigrations();
 
 			console.log("🔮 Initialized data models!");
 		} catch (error) {
 			console.error("❌ Unable to initialize data models", error);
 			process.exit(1);
 		}
+	}
+
+	async runMigrations () {
+		const umzug = new Umzug({
+			storage: "sequelize",
+			storageOptions: {
+				sequelize: this.sequelize,
+				tableName: "migrations",
+			},
+			migrations: {
+				params: [
+					this.sequelize.getQueryInterface(),
+					this.sequelize.constructor,
+				],
+				path: "./migrations",
+				pattern: /^\d+[\w-]+\.js$/,
+			},
+		});
+		await umzug.up();
 	}
 }
 

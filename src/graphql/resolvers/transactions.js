@@ -1,19 +1,31 @@
 const { Transaction } = require("../../database/models");
 
-const getTransactions = () => {
-    return Transaction.findAll();
+const getTransactions = (_, __, { user }) => {
+    return Transaction.findAll({
+        where: { userId: user.id },
+    });
 };
 
-const createTransaction = async (_, { transactionInput }) => {
-    return Transaction.create(transactionInput);
+const createTransaction = async (_, { transaction }, { user }) => {
+    transaction.userId = user.id;
+    transaction.transactionTime = parseInt(transaction.transactionTime);
+    return Transaction.create(transaction);
 };
 
-const updateTransaction = async (_, { id, transactionInput }) => {
-    return Transaction.update(transactionInput, { where: { id } });
+const updateTransaction = async (_, { id, transaction }, { user }) => {
+    return Transaction.update(transaction, {
+        where: { id, userId: user.id },
+    });
 };
 
-const deleteTransaction = async (_, { id }) => {
-    return Transaction.destroy({ where: { id } });
+const deleteTransaction = async (_, { id }, { user }) => {
+    return Transaction.destroy({
+        where: { id, userId: user.id },
+    });
+};
+
+const transactionTime = (transaction) => {
+    return transaction.transactionTime.valueOf().toString();
 };
 
 module.exports = {
@@ -21,4 +33,5 @@ module.exports = {
     createTransaction,
     updateTransaction,
     deleteTransaction,
+    transactionTime,
 };

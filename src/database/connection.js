@@ -27,8 +27,10 @@ class Database {
 			transactionOptions.sequelize = this.sequelize;
 			userOptions.sequelize = this.sequelize;
 
-			Transaction.init(transactionAttributes, transactionOptions);
 			User.init(userAttributes, userOptions);
+			Transaction.init(transactionAttributes, transactionOptions);
+
+			User.hasMany(Transaction);
 
 			await this.runMigrations();
 

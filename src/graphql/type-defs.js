@@ -33,39 +33,17 @@ const typeDefs = gql`
 
     type Transaction {
         id: ID!
-        type: TransactionType!
-        transactionTime: Int!
-        category: TransactionCategory
-        tags: [ String! ]
-        transactee: String! # TODO should have types for different vendors
-        transacteeType: TransacteeType
-        description: String!
+        transactionTime: String!
         amount: Float!
+        transactee: String!
+        description: String!
     }
 
     input TransactionInput {
-        type: TransactionType!
+        transactionTime: String!
+        amount: Float!
         transactee: String!
         description: String!
-        amount: Float!
-        timestamp: Int!
-    }
-
-    enum TransactionCategory {
-        PAYCHECK
-        RENT
-        TRANSPORTATION
-    }
-
-    enum TransactionType {
-        CREDIT
-        DEBIT
-    }
-
-    enum TransacteeType {
-        VENDOR
-        PERSON
-        EMPLOYER
     }
 `;
 

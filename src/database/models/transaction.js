@@ -8,36 +8,20 @@ const transactionAttributes = {
 		primaryKey: true,
 		autoIncrement: true,
 	},
-	type: {
-		type: Sequelize.ENUM("CREDIT", "DEBIT"),
-		allowNull: false,
-	},
 	transactionTime: {
-		type: Sequelize.STRING,
+		type: Sequelize.DATE,
 		allowNull: false,
 	},
-	category: {
-		type: Sequelize.ENUM("PAYCHECK", "RENT", "TRANSPORTATION"),
+	amount: {
+		type: Sequelize.FLOAT,
 		allowNull: false,
-	},
-	tags: {
-		type: Sequelize.ARRAY(Sequelize.STRING),
-		allowNull: false,
-		defaultValue: [],
 	},
 	transactee: {
 		type: Sequelize.STRING,
 		allowNull: false,
 	},
-	transacteeType: {
-		type: Sequelize.ENUM("VENDOR", "PERSON", "EMPLOYER"),
-	},
 	description: {
 		type: Sequelize.STRING,
-		allowNull: false,
-	},
-	amount: {
-		type: Sequelize.FLOAT,
 		allowNull: false,
 	},
 };

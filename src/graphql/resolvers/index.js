@@ -10,6 +10,7 @@ const {
     createTransaction,
     updateTransaction,
     deleteTransaction,
+    transactionTime,
 } = require("./transactions");
 
 const resolvers = {
@@ -26,6 +27,9 @@ const resolvers = {
         createTransaction: authenticated(createTransaction),
         updateTransaction: authenticated(updateTransaction),
         deleteTransaction: authenticated(deleteTransaction),
+    },
+    Transaction: {
+        transactionTime,
     },
 };
 

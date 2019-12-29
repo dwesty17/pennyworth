@@ -5,6 +5,8 @@ const typeDefs = gql`
         getUser: User
         
         getTransactions: [ Transaction! ]
+        
+        getAmountSpent(since: String!): Float!
     }
 
     type Mutation {

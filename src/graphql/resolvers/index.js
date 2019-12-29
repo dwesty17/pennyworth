@@ -12,12 +12,15 @@ const {
     deleteTransaction,
     transactionTime,
 } = require("./transactions");
+const { getAmountSpent } = require("./getAmountSpent");
 
 const resolvers = {
     Query: {
         getUser,
 
         getTransactions: authenticated(getTransactions),
+
+        getAmountSpent: authenticated(getAmountSpent),
     },
     Mutation: {
         loginUser,

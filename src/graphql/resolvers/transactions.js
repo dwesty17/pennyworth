@@ -3,6 +3,7 @@ const { Transaction } = require("../../database/models");
 const getTransactions = (_, __, { user }) => {
     return Transaction.findAll({
         where: { userId: user.id },
+        order: [ ["transactionTime", "DESC"] ],
     });
 };
 

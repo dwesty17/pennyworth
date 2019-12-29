@@ -15,8 +15,6 @@ const typeDefs = gql`
         updateUser (updatedUser: UserInput!): User
         
         createTransaction (transaction: TransactionInput!): Transaction!
-        updateTransaction (id: ID!, transaction: TransactionInput!): Transaction!
-        deleteTransaction (id: ID!): Transaction
     }
 
     type User {

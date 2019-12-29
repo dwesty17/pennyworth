@@ -8,8 +8,6 @@ const {
 const {
     getTransactions,
     createTransaction,
-    updateTransaction,
-    deleteTransaction,
     transactionTime,
 } = require("./transactions");
 const { getAmountSpent } = require("./getAmountSpent");
@@ -28,8 +26,6 @@ const resolvers = {
         updateUser: authenticated(updateUser),
 
         createTransaction: authenticated(createTransaction),
-        updateTransaction: authenticated(updateTransaction),
-        deleteTransaction: authenticated(deleteTransaction),
     },
     Transaction: {
         transactionTime,

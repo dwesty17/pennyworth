@@ -13,18 +13,6 @@ const createTransaction = async (_, { transaction }, { user }) => {
     return Transaction.create(transaction);
 };
 
-const updateTransaction = async (_, { id, transaction }, { user }) => {
-    return Transaction.update(transaction, {
-        where: { id, userId: user.id },
-    });
-};
-
-const deleteTransaction = async (_, { id }, { user }) => {
-    return Transaction.destroy({
-        where: { id, userId: user.id },
-    });
-};
-
 const transactionTime = (transaction) => {
     return transaction.transactionTime.valueOf().toString();
 };
@@ -32,7 +20,5 @@ const transactionTime = (transaction) => {
 module.exports = {
     getTransactions,
     createTransaction,
-    updateTransaction,
-    deleteTransaction,
     transactionTime,
 };

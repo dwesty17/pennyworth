@@ -3,9 +3,8 @@ const { gql } = require("apollo-server");
 const typeDefs = gql`
     type Query {
         getUser: User
-        
         getTransactions: [ Transaction! ]
-        
+        getBudgets: [ Budget! ]
         getAmountSpent(since: String!): Float!
     }
 
@@ -13,7 +12,6 @@ const typeDefs = gql`
         loginUser (user: UserInput!): User
         createUser (user: UserInput!): User
         updateUser (updatedUser: UserInput!): User
-        
         createTransaction (transaction: TransactionInput!): Transaction!
     }
 
@@ -44,6 +42,20 @@ const typeDefs = gql`
         amount: Float!
         transactee: String!
         description: String!
+    }
+    
+    type Budget {
+        id: ID!
+        name: String!
+        description: String
+        amount: Float!
+        timespan: Timespan!
+    }
+    
+    enum Timespan {
+        WEEK
+        MONTH
+        YEAR
     }
 `;
 

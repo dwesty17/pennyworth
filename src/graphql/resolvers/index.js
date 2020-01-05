@@ -10,21 +10,20 @@ const {
     createTransaction,
     transactionTime,
 } = require("./transactions");
+const { getBudgets } = require("./budgets");
 const { getAmountSpent } = require("./getAmountSpent");
 
 const resolvers = {
     Query: {
         getUser,
-
         getTransactions: authenticated(getTransactions),
-
+        getBudgets: authenticated(getBudgets),
         getAmountSpent: authenticated(getAmountSpent),
     },
     Mutation: {
         loginUser,
         createUser,
         updateUser: authenticated(updateUser),
-
         createTransaction: authenticated(createTransaction),
     },
     Transaction: {

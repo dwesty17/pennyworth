@@ -2,11 +2,21 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     const transaction = await queryInterface.sequelize.transaction();
     try {
-      await queryInterface.createTable("budget", {
+      await queryInterface.createTable("budgets", {
         id : {
           type: Sequelize.INTEGER,
           primaryKey: true,
           autoIncrement: true,
+        },
+        user_id: {
+          type: Sequelize.INTEGER,
+          references: {
+            model: "users",
+            key: "id",
+          },
+          onUpdate: "cascade",
+          onDelete: "cascade",
+          allowNull: false,
         },
         name: {
           type: Sequelize.STRING,
@@ -34,7 +44,7 @@ module.exports = {
       await queryInterface.addColumn("transactions", "budget_id", {
         type: Sequelize.INTEGER,
         references: {
-          model: "budget",
+          model: "budgets",
           key: "id",
         },
         onUpdate: "cascade",

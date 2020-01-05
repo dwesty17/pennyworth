@@ -35,6 +35,7 @@ class Database {
 			Budget.init(budgetAttributes, budgetOptions);
 
 			User.hasMany(Transaction);
+			User.hasMany(Budget);
 			Budget.hasMany(Transaction);
 
 			await this.runMigrations();

@@ -6,7 +6,7 @@ const typeDefs = gql`
         getTransactions: [ Transaction! ]
         getBudgets: [ Budget! ]
         getAmountSpent(from: String to: String): Float!
-        getAmountSpentPerDay(from: String to: String): Float!
+        getAmountSpentPerDay(from: String! to: String!): [Float!]!
     }
 
     type Mutation {

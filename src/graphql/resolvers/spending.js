@@ -18,17 +18,22 @@ const getAmountSpent = (_, { from, to }, { user }) => {
 };
 
 const getAmountSpentPerDay = (_, { from, to }, { user }) => {
-    const now = moment().valueOf();
-    return Transaction.sum("amount", {
-        where: {
-            userId: user.id,
-            budgetId: null,
-            transactionTime: {
-                [Op.gte]: new Date(parseInt(from || now)),
-                [Op.lte]: new Date(parseInt(to || now)),
-            },
-        },
-    });
+    const amounts = [];
+    for (let i = parseInt(from); i <= parseInt(to); i += 1000 * 60 * 60 * 24) {
+        amounts.push(
+            Transaction.sum("amount", {
+                where: {
+                    userId: user.id,
+                    budgetId: null,
+                    transactionTime: {
+                        [Op.gte]: moment(i).startOf("day"),
+                        [Op.lte]: moment(i).endOf("day"),
+                    },
+                },
+            })
+        );
+    }
+    return Promise.all(amounts);
 };
 
 module.exports = {

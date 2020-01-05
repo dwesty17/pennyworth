@@ -42,6 +42,7 @@ const typeDefs = gql`
         amount: Float!
         transactee: String!
         description: String!
+        budgetId: ID
     }
     
     type Budget {

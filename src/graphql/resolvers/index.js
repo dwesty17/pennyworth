@@ -1,17 +1,8 @@
 const { authenticated } = require("../auth-gaurd");
-const {
-    getUser,
-    loginUser,
-    createUser,
-    updateUser,
-} = require("./users");
-const {
-    getTransactions,
-    createTransaction,
-    transactionTime,
-} = require("./transactions");
+const { getUser, loginUser, createUser, updateUser } = require("./users");
+const { getTransactions, createTransaction, transactionTime } = require("./transactions");
 const { getBudgets } = require("./budgets");
-const { getAmountSpent } = require("./getAmountSpent");
+const { getAmountSpent, getAmountSpentPerDay } = require("./spending");
 
 const resolvers = {
     Query: {
@@ -19,6 +10,7 @@ const resolvers = {
         getTransactions: authenticated(getTransactions),
         getBudgets: authenticated(getBudgets),
         getAmountSpent: authenticated(getAmountSpent),
+        getAmountSpentPerDay: authenticated(getAmountSpentPerDay),
     },
     Mutation: {
         loginUser,

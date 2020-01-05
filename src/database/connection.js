@@ -2,10 +2,12 @@ const { Sequelize } = require("sequelize");
 const Umzug = require("umzug");
 
 const { DATABASE_URL } = require("../config");
-const { transactionOptions, transactionAttributes } = require("./models/transaction");
 const { userOptions, userAttributes } = require("./models/user");
-const { Transaction } = require("./models");
+const { transactionOptions, transactionAttributes } = require("./models/transaction");
+const { budgetOptions, budgetAttributes } = require("./models/budget");
 const { User } = require("./models");
+const { Transaction } = require("./models");
+const { Budget } = require("./models");
 
 class Database {
 	constructor () {
@@ -26,11 +28,14 @@ class Database {
 		try {
 			transactionOptions.sequelize = this.sequelize;
 			userOptions.sequelize = this.sequelize;
+			budgetOptions.sequelize = this.sequelize;
 
 			User.init(userAttributes, userOptions);
 			Transaction.init(transactionAttributes, transactionOptions);
+			Budget.init(budgetAttributes, budgetOptions);
 
 			User.hasMany(Transaction);
+			Budget.hasMany(Transaction);
 
 			await this.runMigrations();
 
@@ -57,7 +62,7 @@ class Database {
 				pattern: /^\d+[\w-]+\.js$/,
 			},
 		});
-		await umzug.up();
+		await umzug.up({});
 	}
 }
 

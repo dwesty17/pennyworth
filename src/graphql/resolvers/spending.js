@@ -8,7 +8,6 @@ const getAmountSpent = (_, { from, to }, { user }) => {
     return Transaction.sum("amount", {
         where: {
             userId: user.id,
-            budgetId: null,
             transactionTime: {
                 [Op.gte]: new Date(parseInt(from || now)),
                 [Op.lte]: new Date(parseInt(to || now)),

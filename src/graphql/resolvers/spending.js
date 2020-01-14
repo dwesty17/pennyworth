@@ -23,7 +23,6 @@ const getAmountSpentPerDay = (_, { from, to }, { user }) => {
             Transaction.sum("amount", {
                 where: {
                     userId: user.id,
-                    budgetId: null,
                     transactionTime: {
                         [Op.gte]: moment(i).startOf("day"),
                         [Op.lte]: moment(i).endOf("day"),

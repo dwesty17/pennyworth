@@ -24,8 +24,8 @@ const getAmountSpentPerDay = (_, { from, to }, { user }) => {
                 where: {
                     userId: user.id,
                     transactionTime: {
-                        [Op.gte]: moment(i).startOf("day"),
-                        [Op.lte]: moment(i).endOf("day"),
+                        [Op.gte]: moment(i),
+                        [Op.lt]: moment(i).add(24, "hours"),
                     },
                 },
             })
